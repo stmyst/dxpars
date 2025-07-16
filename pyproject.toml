@@ -1,0 +1,15 @@
+[project]
+name = "dxpars"
+version = "0.0.1"
+description = "python docx parser"
+authors = [
+    { name="Stepan Martiugin" }
+]
+readme = "README.md"
+license = { file="LICENSE" }
+requires-python = ">= 3.9"
+dependencies = []
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
