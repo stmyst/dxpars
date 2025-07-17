@@ -1,8 +1,6 @@
 """docx Paragraph docx_objects."""
 
-from re import match
 from typing import Optional, Union
-
 from xml.etree import ElementTree
 
 from dxpars.base.base_objects import DocxPart
@@ -78,22 +76,18 @@ class Paragraph(DocxPart):
     def bullet(self) -> bool:
         """Get Bullet format."""
 
-        if bool(self.formatting.properties.get('numPr') is not None):
-            return True
-        text = self.text.split()
-        if len(text) > 1:
-            if match(string=text[0], pattern=r'^\d+(\.\d+)*[\.)]$'):
-                return True
-        return False
+        return bool(self.formatting.properties.get('numPr') is not None)
 
     @property
     def alignment(self) -> str:
         """Get Alignment."""
+
         return self.formatting.get_tag_value(tag='jc', default='left')
 
     @property
     def pstyle(self) -> Optional[str]:
         """Get Paragraph style."""
+
         return self.formatting.get_tag_value(tag='pStyle')
 
 
@@ -148,7 +142,8 @@ class Run(DocxPart):
         return ''.join(text)
 
     @property
-    def show(self):
+    def show(self) -> str:
+        """Get Run text."""
         return self.text
 
     @property
@@ -165,11 +160,13 @@ class Run(DocxPart):
     @property
     def underline(self) -> bool:
         """Get Underline."""
+
         return bool(self.formatting.properties.get('u') is not None)
 
     @property
     def caps(self) -> bool:
         """Get Caps."""
+
         return bool(self.formatting.properties.get('caps') is not None)
 
     def _has_run_property(self, tag: str) -> bool:

@@ -2,9 +2,8 @@
 
 from pathlib import Path
 from typing import Any, IO, Optional, Union
-from zipfile import ZipFile
-
 from xml.etree import ElementTree
+from zipfile import ZipFile
 
 from dxpars.docx_objects.body import Body
 from dxpars.docx_objects.paragraph import Paragraph

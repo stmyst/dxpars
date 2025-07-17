@@ -31,7 +31,7 @@ class Body(DocxPart):
         return '\n'.join([part.text for part in self._nodes])
 
     @property
-    def show(self):
+    def show(self) -> list:
         return [part.show for part in self._nodes]
 
     @property
@@ -47,7 +47,7 @@ class Body(DocxPart):
         return [node for node in self._nodes if isinstance(node, Table)]
 
     @property
-    def properties(self) -> None:
+    def properties(self):
         """Get body properties."""
 
         return None

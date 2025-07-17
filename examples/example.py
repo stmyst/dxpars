@@ -42,3 +42,6 @@ print(document.tables[0].show)
 
 # for tables with merged cells
 print(document.tables[1].expand)
+
+# dict representation (can be json serialized)
+print(document.to_dict)

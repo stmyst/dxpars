@@ -36,7 +36,7 @@ class Table(DocxPart):
         return '\n'.join(node.text for node in self._nodes)
 
     @property
-    def show(self):
+    def show(self) -> dict:
         """Get Table representation as a dict."""
 
         return {row_idx: row.show for row_idx, row in enumerate(self._nodes)}
@@ -48,7 +48,7 @@ class Table(DocxPart):
         return {'shape': self.shape}
 
     @property
-    def expand(self):
+    def expand(self) -> dict:
         """Expand horizontally merged cells."""
 
         return {
@@ -80,12 +80,6 @@ class Row(DocxPart):
 
     @property
     def show(self) -> dict:
-        """Get Table Row representation as a dict."""
-
-        return {cell_idx: cell.show for cell_idx, cell in enumerate(self._nodes)}
-
-    @property
-    def structure(self) -> dict:
         """Return row cells in table structure form."""
 
         row_cells = {}
@@ -95,7 +89,7 @@ class Row(DocxPart):
             if merged and not first:
                 cell_idx += cell.formatting.h_merge
                 continue
-            row_cells[cell_idx] = cell
+            row_cells[cell_idx] = cell.show
             cell_idx += cell.formatting.h_merge
         return row_cells
 
@@ -106,7 +100,7 @@ class Row(DocxPart):
         return len(self.expand)
 
     @property
-    def expand(self):
+    def expand(self) -> dict:
         """Expand horizontally merged cells."""
 
         row_data = {}
@@ -118,11 +112,11 @@ class Row(DocxPart):
         return row_data
 
     @property
-    def properties(self):
+    def properties(self) -> dict:
         """Get Row properties."""
 
         return {
-            'length': len(self.structure),
+            'length': len(self.show),
             'height': self.formatting.height,
         }
 

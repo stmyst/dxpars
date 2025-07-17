@@ -2,7 +2,6 @@
 
 from abc import ABC, abstractmethod
 from typing import Any, Generator, Optional
-
 from xml.etree import ElementTree
 
 
@@ -23,7 +22,7 @@ class XmlElement(object):
         self._xml = xml_element
 
     @property
-    def show_xml(self):
+    def show_xml(self) -> Optional[list[str]]:
         """Show XML representation of the element."""
 
         if self._xml is not None:
