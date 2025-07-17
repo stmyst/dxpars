@@ -1,6 +1,6 @@
 # DXPARS
 
-A fast and simple Python library for parsing Microsoft Word (DOCX) files, written in pure Python. DXPARS provides an intuitive API for extracting text content, working with formatting, tables, and converting documents to plain text.
+A fast and simple Python library for analyzing and parsing Microsoft Word (DOCX) files, written in pure Python. DXPARS provides an intuitive API for extracting text content, working with formatting, tables, and converting documents to plain text.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python Version](https://img.shields.io/badge/python-3.9%2B-blue)](https://www.python.org/)
@@ -27,7 +27,7 @@ Or install from source:
 ```bash
 git clone https://github.com/stmyst/dxpars.git
 cd dxpars
-pip install -e .
+pip install .
 ```
 
 ## Usage
