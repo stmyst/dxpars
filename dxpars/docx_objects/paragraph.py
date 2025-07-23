@@ -44,7 +44,7 @@ class Paragraph(DocxPart):
             for run in self._nodes
             if all([run.text, run.text not in ['\n', '\t']])
         )
-        return bool(all(bold_condition))
+        return all(bold_condition)
 
     @property
     def italic(self) -> bool:
@@ -52,14 +52,14 @@ class Paragraph(DocxPart):
 
         if not self._nodes:
             return self.formatting.has_run_with_format(tag='i')
-        return bool(all(run.italic for run in self._nodes))
+        return all(run.italic for run in self._nodes)
 
     @property
     def underline(self) -> bool:
         """Get Underline format."""
         if not self._nodes:
             return self.formatting.has_run_with_format(tag='u')
-        return bool(all(run.underline for run in self._nodes))
+        return all(run.underline for run in self._nodes)
 
     @property
     def caps(self) -> bool:
@@ -68,7 +68,7 @@ class Paragraph(DocxPart):
         return any(
             [
                 self.text.isupper(),
-                bool(self._nodes and all(run.caps for run in self._nodes)),
+                self._nodes and all(run.caps for run in self._nodes),
             ],
         )
 
@@ -76,7 +76,7 @@ class Paragraph(DocxPart):
     def bullet(self) -> bool:
         """Get Bullet format."""
 
-        return bool(self.formatting.properties.get('numPr') is not None)
+        return self.formatting.properties.get('numPr') is not None
 
     @property
     def alignment(self) -> str:
@@ -134,9 +134,8 @@ class Run(DocxPart):
         for node in self._xml:
             ident = idents.get(node.tag)
             if ident is not None:
-                if ident == 't':
-                    if node.text is not None:
-                        text.append(node.text)
+                if ident == 't' and node.text is not None:
+                    text.append(node.text)
                 else:
                     text.append(ident)
         return ''.join(text)
@@ -161,21 +160,13 @@ class Run(DocxPart):
     def underline(self) -> bool:
         """Get Underline."""
 
-        return bool(self.formatting.properties.get('u') is not None)
+        return self.formatting.properties.get('u') is not None
 
     @property
     def caps(self) -> bool:
         """Get Caps."""
 
-        return bool(self.formatting.properties.get('caps') is not None)
-
-    def _has_run_property(self, tag: str) -> bool:
-        prop = self.formatting.properties.get(tag)
-        if prop is None:
-            return False
-        if not prop:
-            return True
-        return prop['val'].isdigit() and int(prop['val']) > 0
+        return self.formatting.properties.get('caps') is not None
 
     @property
     def properties(self) -> dict[str, bool]:
@@ -187,3 +178,11 @@ class Run(DocxPart):
             'underline': self.underline,
             'caps': self.caps,
         }
+
+    def _has_run_property(self, tag: str) -> bool:
+        prop = self.formatting.properties.get(tag)
+        if prop is None:
+            return False
+        if not prop:
+            return True
+        return prop['val'].isdigit() and int(prop['val']) > 0

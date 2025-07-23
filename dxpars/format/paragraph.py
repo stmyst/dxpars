@@ -48,7 +48,7 @@ class ParagraphFormat(FormatElement):
             tag: run tag
         """
         run_prop = self.properties.get('rPr')
-        return bool(run_prop is not None and run_prop.get(tag) is not None)
+        return run_prop is not None and run_prop.get(tag) is not None
 
 
 class RunFormat(FormatElement):

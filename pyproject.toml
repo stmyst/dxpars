@@ -3,13 +3,22 @@ name = "dxpars"
 version = "0.0.1"
 description = "python docx parser"
 authors = [
-    { name="Stepan Martiugin" }
+    { name = "Stepan Martiugin", email = "stepanmartiugin@gmail.com" }
 ]
 readme = "README.md"
-license = { file="LICENSE" }
+license = { file = "LICENSE" }
 requires-python = ">= 3.9"
 dependencies = []
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+]
 
 [build-system]
 requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
+
+[project.urls]
+"Homepage" = "https://github.com/stmyst/dxpars"
+"Bug Tracker" = "https://github.com/stmyst/dxpars/issues"

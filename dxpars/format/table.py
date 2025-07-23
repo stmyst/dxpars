@@ -65,6 +65,6 @@ class CellFormat(FormatElement):
         merged, first = False, False
         if self._xml is not None:
             v_merge = self._xml.find(path=self._make_tag(tag='vMerge'))
-            merged = bool(v_merge is not None)
-            first = bool(merged and 'restart' in v_merge.attrib.values())
+            merged = v_merge is not None
+            first = merged and 'restart' in v_merge.attrib.values()
         return {'merged': merged, 'first': first}

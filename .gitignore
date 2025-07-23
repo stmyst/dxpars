@@ -3,21 +3,12 @@
 __pycache__
 **/__pycache__
 .env
-
-# Pytest cache
 .pytest_cache
-
-# Jupyter NB Checkpoints
 .ipynb_checkpoints/
-
-# Mypy cache
 .mypy_cache/
-
 .tests/
-
 .vscode
-
-# unused
 .unused/
-
+build
+dist
 to do.md

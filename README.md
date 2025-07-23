@@ -42,7 +42,7 @@ import json
 from dxpars.document import Document
 
 # Load a document
-document = Document('path_to_file.docx')
+document = Document('path/document.docx')
 
 # Get full document text
 print(document.text)
@@ -50,7 +50,7 @@ print(document.text)
 # Save as plain text (filename is optional)
 document.to_txt(folder='path_to_folder', filename='doc.txt')
 
-# json serialization 
+# json serialization with formatting
 json.dumps(document.to_dict)
 ```
 
@@ -85,8 +85,4 @@ for table in document.tables:
     print(f'First cell: {cell.text}')
 ```
 
-For more examples check out the [examples](examples/) directory.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+For more examples check out the [examples](https://github.com/stmyst/dxpars/tree/master/examples) directory.
