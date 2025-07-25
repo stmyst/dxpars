@@ -2,7 +2,8 @@
 
 from abc import ABC, abstractmethod
 from typing import Any, Generator, Optional
-from xml.etree import ElementTree
+
+from lxml.etree import ElementBase, tostring
 
 
 class XmlElement(object):
@@ -11,7 +12,7 @@ class XmlElement(object):
     namespace: str = '{http://schemas.openxmlformats.org/wordprocessingml/2006/main}'
     tag: str
 
-    def __init__(self, xml_element: ElementTree):
+    def __init__(self, xml_element: ElementBase):
         """
         XmlElement instance.
 
@@ -22,12 +23,11 @@ class XmlElement(object):
         self._xml = xml_element
 
     @property
-    def show_xml(self) -> Optional[list[str]]:
-        """Show XML representation of the element."""
-
+    def show_xml(self):
         if self._xml is not None:
-            ElementTree.indent(self._xml)
-            return ElementTree.tostring(self._xml, encoding='unicode', method="xml").splitlines()
+            return tostring(
+                self._xml, encoding='unicode', pretty_print=True,
+            ).splitlines()
         return None
 
     def _make_tag(self, tag: str) -> str:
@@ -37,7 +37,7 @@ class XmlElement(object):
 class DocxPart(ABC, XmlElement):
     """Doc object."""
 
-    def __init__(self, xml_element: ElementTree, formatting, nodes=None):
+    def __init__(self, xml_element: ElementBase, formatting, nodes=None):
         """
         Create Document object instance.
 
@@ -101,7 +101,7 @@ class DocxPart(ABC, XmlElement):
 class FormatElement(XmlElement):
     """Doc object format."""
 
-    def __init__(self, xml_element: ElementTree):
+    def __init__(self, xml_element: ElementBase):
         """
         Create Format object instance.
 
@@ -138,12 +138,12 @@ class FormatElement(XmlElement):
         tag_value = tag_data.get(tag_value_key)
         return int(tag_value) if tag_value.isdigit() else tag_value
 
-    def _extract_tags_data(self, element: ElementTree) -> dict[str, Any]:
+    def _extract_tags_data(self, element: ElementBase) -> dict[str, Any]:
         tags_data = {}
         if element is not None:
             for node in element:
                 tag = self.extract_tag(node=node.tag)
-                if list(node):
+                if node.getchildren():
                     tags_data[tag] = self._extract_tags_data(element=node)
                 else:
                     tags_data[tag] = {

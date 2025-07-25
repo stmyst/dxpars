@@ -1,6 +1,6 @@
 """docx Table docx_objects."""
 
-from xml.etree import ElementTree
+from lxml.etree import ElementBase
 
 from dxpars.base.base_objects import DocxPart
 from dxpars.docx_objects.paragraph import Paragraph
@@ -12,7 +12,7 @@ class Table(DocxPart):
 
     tag = 'tbl'
 
-    def __init__(self, xml_element: ElementTree):
+    def __init__(self, xml_element: ElementBase):
         """
         Create a table  instance.
 
@@ -62,7 +62,7 @@ class Row(DocxPart):
 
     tag = 'tr'
 
-    def __init__(self, xml_element: ElementTree):
+    def __init__(self, xml_element: ElementBase):
         """
         Create a table row instance.
 
@@ -126,7 +126,7 @@ class Cell(DocxPart):
 
     tag = 'tc'
 
-    def __init__(self, xml_element: ElementTree):
+    def __init__(self, xml_element: ElementBase):
         """
         Create a table cell instance.
 

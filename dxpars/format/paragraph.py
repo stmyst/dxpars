@@ -1,5 +1,6 @@
 from typing import Optional
-from xml.etree import ElementTree
+
+from lxml.etree import ElementBase
 
 from dxpars.base.base_objects import FormatElement
 
@@ -9,7 +10,7 @@ class BodyFormat(FormatElement):
 
     tag = 'sectPr'
 
-    def __init__(self, xml_element: ElementTree):
+    def __init__(self, xml_element: ElementBase):
         """
         Create a BodyFormat instance.
 
@@ -24,7 +25,7 @@ class ParagraphFormat(FormatElement):
 
     tag = 'pPr'
 
-    def __init__(self, xml_element: ElementTree):
+    def __init__(self, xml_element: ElementBase):
         """
         Create a ParagraphFormat instance.
 

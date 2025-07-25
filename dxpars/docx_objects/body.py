@@ -1,4 +1,4 @@
-from xml.etree import ElementTree
+from lxml.etree import ElementBase
 
 from dxpars.base.base_objects import DocxPart
 from dxpars.docx_objects.paragraph import Paragraph
@@ -11,7 +11,7 @@ class Body(DocxPart):
 
     tag = 'body'
 
-    def __init__(self, doc_tree: ElementTree):
+    def __init__(self, doc_tree: ElementBase):
         """
         Create a body instance.
 

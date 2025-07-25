@@ -1,7 +1,8 @@
 """docx Paragraph docx_objects."""
 
 from typing import Optional, Union
-from xml.etree import ElementTree
+
+from lxml.etree import ElementBase
 
 from dxpars.base.base_objects import DocxPart
 from dxpars.format.paragraph import ParagraphFormat, RunFormat
@@ -12,7 +13,7 @@ class Paragraph(DocxPart):
 
     tag = 'p'
 
-    def __init__(self, xml_element: ElementTree) -> None:
+    def __init__(self, xml_element: ElementBase) -> None:
         """
         Create a paragraph instance.
 
@@ -111,7 +112,7 @@ class Run(DocxPart):
 
     tag = 'r'
 
-    def __init__(self, xml_element: ElementTree):
+    def __init__(self, xml_element: ElementBase):
         """
         Create a paragraph Run instance.
 

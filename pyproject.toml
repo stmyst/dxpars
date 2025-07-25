@@ -1,6 +1,6 @@
 [project]
 name = "dxpars"
-version = "0.0.1"
+version = "1.0.0"
 description = "python docx parser"
 authors = [
     { name = "Stepan Martiugin", email = "stepanmartiugin@gmail.com" }
@@ -8,7 +8,7 @@ authors = [
 readme = "README.md"
 license = { file = "LICENSE" }
 requires-python = ">= 3.9"
-dependencies = []
+dependencies = ["lxml ~=6.0.0"]
 classifiers = [
   "Programming Language :: Python :: 3",
   "License :: OSI Approved :: MIT License",

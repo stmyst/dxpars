@@ -1,4 +1,4 @@
-from xml.etree import ElementTree
+from lxml.etree import ElementBase
 
 from dxpars.base.base_objects import FormatElement
 
@@ -8,7 +8,7 @@ class TableFormat(FormatElement):
 
     tag = 'tblPr'
 
-    def __init__(self, xml_element: ElementTree):
+    def __init__(self, xml_element: ElementBase):
         """
         Create a TableFormat instance.
 
@@ -23,7 +23,7 @@ class RowFormat(FormatElement):
 
     tag = 'trPr'
 
-    def __init__(self, xml_element: ElementTree):
+    def __init__(self, xml_element: ElementBase):
         """
         Create a RowFormat instance.
 
@@ -44,7 +44,7 @@ class CellFormat(FormatElement):
 
     tag = 'tcPr'
 
-    def __init__(self, xml_element: ElementTree):
+    def __init__(self, xml_element: ElementBase):
         """
        Create a CellFormat instance.
 

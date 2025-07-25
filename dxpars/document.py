@@ -2,8 +2,9 @@
 
 from pathlib import Path
 from typing import Any, IO, Optional, Union
-from xml.etree import ElementTree
 from zipfile import ZipFile
+
+from lxml import etree
 
 from dxpars.docx_objects.body import Body
 from dxpars.docx_objects.paragraph import Paragraph
@@ -25,7 +26,7 @@ class Document(object):
         """
         self.filename = self._get_filename(path=file_or_path, filename=filename)
         with ZipFile(file_or_path) as zipf:
-            self.body = Body(doc_tree=ElementTree.fromstring(zipf.read('word/document.xml')))
+            self.body = Body(doc_tree=etree.fromstring(zipf.read('word/document.xml')))
 
     def __str__(self) -> str:
         """
